@@ -1,10 +1,11 @@
 <div align="center">
 <img align="center" width="24%" src="./.github/hero.png" />
 <br>
-<i>
-    Projeto desenvolvido para PSI3572 - Computação Visual (2024)[^1]
-</i>
+
+_Projeto desenvolvido para PSI3572 - Computação Visual (2024)_[^1]
+
 </div>
+<br>
 
 > Aplicação para visualização 3D de espectro de áudio.
 > Um campo pacífico e silencioso irá se transformar conforme o áudio é capturado, dando lugar a uma cidade vibrante e cheia de energia. 
