@@ -74,3 +74,6 @@ crashlytics-build.properties
 
 # Git management files 
 .git/
+
+# Blender
+*.blend[1-9]
