@@ -33,33 +33,36 @@ public class ReactBehaviourZ : AudioVisualizationEffect
         var dt = Time.deltaTime;
 
         var spectrumData = GetSpectrumData();
-        // Debug.Log(spectrumData[SpectrumBand]);
-        var audioScale = Mathf.Pow(spectrumData[SpectrumBand] * AudioScale, Power);
-        // Debug.Log(audioScale);
 
-        if (_smoothFall)
-        {
-            var audioFall = audioScale;
-            // Hold and fall down animation
-            var fallConstant = Mathf.Pow(0.03f * AudioScale, Power);
-            _fall += Mathf.Pow(fallConstant, 1 + _fallSpeed * 2) * dt;
-            audioFall -= _fall * dt;
+        if (spectrumData != null) {
+            // Debug.Log(spectrumData[SpectrumBand]);
+            var audioScale = Mathf.Pow(spectrumData[SpectrumBand] * AudioScale, Power);
+            // Debug.Log(audioScale);
 
-            // Pull up by input.
-            if (audioFall < audioScale)
+            if (_smoothFall)
             {
-                audioFall = audioScale;
-                _fall = 0;
+                var audioFall = audioScale;
+                // Hold and fall down animation
+                var fallConstant = Mathf.Pow(0.03f * AudioScale, Power);
+                _fall += Mathf.Pow(fallConstant, 1 + _fallSpeed * 2) * dt;
+                audioFall -= _fall * dt;
+
+                // Pull up by input.
+                if (audioFall < audioScale)
+                {
+                    audioFall = audioScale;
+                    _fall = 0;
+                }
+                else
+                {
+                    Debug.Log("falling");
+                }
+                audioScale = audioFall;
             }
-            else
-            {
-                Debug.Log("falling");
-            }
-            audioScale = audioFall;
+
+            var newScale = new Vector3(_originalScale.x, _originalScale.y, _originalScale.z + audioScale);
+            // Subject.transform.localScale = newScale;
+            transform.localScale = newScale;
         }
-
-        var newScale = new Vector3(_originalScale.x, _originalScale.y, _originalScale.z + audioScale);
-        // Subject.transform.localScale = newScale;
-        transform.localScale = newScale;
     }
 }
