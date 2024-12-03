@@ -11,7 +11,23 @@ public class BuildingSpawn : MonoBehaviour
 
     public GameObject[] ModelBuilding;
 
-    public GameObject[] Clones = new GameObject[AMOUNT_BUILDINGS + 1];
+    private GameObject[] Clones = new GameObject[AMOUNT_BUILDINGS + 1];
+
+    public float AudioScale = 150;
+    public float Power = 2;
+    public int[] SpectrumBandRange = {
+        5, 32
+    };
+
+    public float FallSpeed = 0.3F;
+
+    public int MinFrequency = 200;
+    public int MaxFrequency = 18000;
+
+    public bool smoothFall = true;
+
+    public int MaxColliderAttempts = 5;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,19 +50,18 @@ public class BuildingSpawn : MonoBehaviour
 
             var component = building.AddComponent<ReactBehaviourY>();
             component.WasapiAudioSource = _WasapiAudioSource;
-            component.SpectrumSize = 32;
-            component.MinFrequency = 200;
-            component.MaxFrequency = 18000;
-            component.AudioScale = 150;
-            component.Power = 2;
-            component.SpectrumBand = Random.Range(5, 32);
-            component.smoothFall = true;
-            component.fallSpeed = 0.3F;
+            component.SpectrumSize = SpectrumBandRange[1];
+            component.MinFrequency = MinFrequency;
+            component.MaxFrequency = MaxFrequency;
+            component.AudioScale = AudioScale;
+            component.Power = Power;
+            component.SpectrumBand = Random.Range(
+                SpectrumBandRange[0], SpectrumBandRange[1]);
+            component.smoothFall = smoothFall;
+            component.fallSpeed = FallSpeed;
 
             building.SetActive(true);
 
-
-            int maxAttempts = 5;
             int attempts = 0;
             while (true) {
                 PlaceRandomly(building);
@@ -68,7 +83,7 @@ public class BuildingSpawn : MonoBehaviour
                     }
                 }
 
-                if (attempts > maxAttempts) {
+                if (attempts > MaxColliderAttempts) {
                     break;
                 }
 
