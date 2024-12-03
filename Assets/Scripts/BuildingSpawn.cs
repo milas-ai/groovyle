@@ -13,7 +13,9 @@ public class BuildingSpawn : MonoBehaviour
 
     private GameObject[] Clones = new GameObject[AMOUNT_BUILDINGS + 1];
 
-    public float AudioScale = 150;
+    public List<Vector3> ScaleGameObject = new List<Vector3>();
+
+    public List<float> AudioScale = new List<float>();
     public float Power = 2;
     public int[] SpectrumBandRange = {
         5, 32
@@ -32,17 +34,29 @@ public class BuildingSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject model in ModelBuilding) {
+        for (int i = 0; i < ModelBuilding.Length; i++) {
+            if (ScaleGameObject.Count <= i) {
+                ScaleGameObject.Add(new Vector3(10.0F, 0.0F, 10.0F));
+            }
+            if (AudioScale.Count <= i) {
+                AudioScale.Add(150);
+            }
+        }
+
+        for (int i = 0; i < ModelBuilding.Length; i++) {
+            GameObject model = ModelBuilding[i];
+
             model.SetActive(false);
-            model.transform.localScale = new Vector3(10.0F, 0.0F, 10.0F);
+            model.transform.localScale = ScaleGameObject[i];
         }
 
         for (int i = 0; i < AMOUNT_BUILDINGS; i++) {
             //var rotation = Quaternion.Euler(-90, 0, 0);
             var rotation = Quaternion.identity;
 
+            int index = Random.Range(0, ModelBuilding.Length);
             var building = Instantiate(
-                ModelBuilding[Random.Range(0, ModelBuilding.Length)]) as GameObject;
+                ModelBuilding[index]) as GameObject;
             building.name = building.name + '-' + i;
             PlaceRandomly(building);
 
@@ -53,7 +67,7 @@ public class BuildingSpawn : MonoBehaviour
             component.SpectrumSize = SpectrumBandRange[1];
             component.MinFrequency = MinFrequency;
             component.MaxFrequency = MaxFrequency;
-            component.AudioScale = AudioScale;
+            component.AudioScale = AudioScale[index];
             component.Power = Power;
             component.SpectrumBand = Random.Range(
                 SpectrumBandRange[0], SpectrumBandRange[1]);

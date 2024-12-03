@@ -154,38 +154,26 @@ MonoBehaviour:
   _WasapiAudioSource: {fileID: 256195083}
   ModelBuilding:
   - {fileID: 8825316013868553922, guid: 5853d21bbd1283f438d6cce335b46410, type: 3}
-  Clones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 919132149155446097, guid: 0a7e4e54ff9d6b1499e137d6d1bb6805, type: 3}
+  - {fileID: 919132149155446097, guid: 32a1650250c4bce4bacaec391b3b2c3a, type: 3}
+  - {fileID: 919132149155446097, guid: 2a282d3b61796b24085a642683890cfd, type: 3}
+  ScaleGameObject:
+  - {x: 10, y: 0, z: 10}
+  - {x: 0.5, y: 0, z: 0.5}
+  - {x: 0.5, y: 0, z: 0.5}
+  - {x: 0.5, y: 0, z: 0.5}
+  AudioScale:
+  - 150
+  - 10
+  - 10
+  - 10
+  Power: 2
+  SpectrumBandRange: 0500000020000000
+  FallSpeed: 0.3
+  MinFrequency: 200
+  MaxFrequency: 18000
+  smoothFall: 1
+  MaxColliderAttempts: 5
 --- !u!4 &11128874
 Transform:
   m_ObjectHideFlags: 0
