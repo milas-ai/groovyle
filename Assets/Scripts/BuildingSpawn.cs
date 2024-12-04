@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Assets.WasapiAudio.Scripts.Unity;
 using UnityEngine;
 
+
 public class BuildingSpawn : MonoBehaviour
 {
-    public const int AMOUNT_BUILDINGS = 15;
+    public const int AMOUNT_BUILDINGS = 20;
 
     public WasapiAudioSource _WasapiAudioSource;
 
@@ -67,7 +68,9 @@ public class BuildingSpawn : MonoBehaviour
             component.SpectrumSize = SpectrumBandRange[1];
             component.MinFrequency = MinFrequency;
             component.MaxFrequency = MaxFrequency;
-            component.AudioScale = AudioScale[index];
+            component.AudioScale = (float)1.2*AudioScale[index];
+            // component.AudioScale = AudioScale[index];
+
             component.Power = Power;
             component.SpectrumBand = Random.Range(
                 SpectrumBandRange[0], SpectrumBandRange[1]);
