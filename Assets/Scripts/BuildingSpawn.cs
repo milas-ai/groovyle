@@ -115,7 +115,7 @@ public class BuildingSpawn : MonoBehaviour
 
     private void PlaceRandomly(GameObject go) {
         var x = Random.Range(-200, 200);
-        var z = Random.Range(0, 200);
+        var z = Random.Range(20, 150);
         go.gameObject.transform.position = new Vector3(x, -0.05F, z);
     }
 
